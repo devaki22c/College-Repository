@@ -19,7 +19,7 @@ import com.college.dto.CollegeDto;
 import com.college.serviceimpl.CollegeServiceImpl;
 
 import jakarta.validation.Valid;
-
+//controller class
 @RestController
 @RequestMapping("/api/college/v1")
 public class CollegeController {
