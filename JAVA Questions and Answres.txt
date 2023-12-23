@@ -1,0 +1,809 @@
+1.Object Class methods 9
+clone(),getClass(),hashCode(),toString(),equals(),wait(),notify(),notifyAll(),finalize()
+clone is used to create copy  the object which implements clonable interface. (clonable interface for creating the copy of object) 
+
+compiletime binding
+binding which can be resolved at compile time 
+bining link of method call and implementation
+
+2.Diff b/w method overloading and riding
+1.overloading to increase the readability of code - for specific implementation of method
+2.involve one class - involve two classes 
+3 compile time polymorphism -runtime polymorphism
+4.no dependency with return type - must be same
+5.you can overload  private, static or final methods in java but not override. 
+
+3. It is possible to override static methods
+No, we cant override static nethods bcz method overriding based on dynamic binding at runtime. static methods are bonded at compile time.    
+
+4.Dynamic dispatch is also knoen as runtime polymorphism
+
+5.Checked exceptions and unchecked exceptions
+An Exceception that is checked by compiler during compile time is called checked exception. EX:IOException,SQLException,CalssNotFoundException,parsingexception
+An Exception that is not checked by compiler during compile time is called unchecked exception  EX :ArrayindexoutofboundsException,ArthimaticException(divided by zero),stringindexoutofboundsexception,nullpointerexception
+
+6.What is transient keyword in java 
+This key word is used to avoid serialization. if a variable is declared as a transient this cant't be serializable. 
+
+serialization in java
+process of converting object to stream and send over network 
+deserialization is the process of converting object stream to actual object
+
+7.How to call garbagecollector
+System.gc()
+Runtime.getRuntime().gc()
+
+8.What is volatile keyword 
+A variable is declared ass volatile. then is read from main memory insead of cache memory.Ram is main memory. cache is temporary memory if we want to access the data repeteadly we store that data in cache 
+cache is smaller but faster than RAM 
+
+9.Marker interface in java 
+An empty interface without methods and fields is called marker interface EX:  java.io.Serializable, java.lang.Cloneable
+provide the rumtime information about the objects.
+
+10.AutoBoxing and 
+Converting primitive values into a Wrapper classes is called AutoBoxing and reverse process is called unboxing
+byte,short,int,long,float,double,char,boolean,
+int a=5;
+Integet obj1=Integer.valueOf(a) 
+Byte,Short,Integer,Long,Double,Character,Boolean
+Integet obj1=Integer.valueOf(5);
+int c=obj1.intValue();
+
+11.what is Unboxingclass variable or static variable
+class variable is also known as static variable memory allocated to this variables is only once.declared in a class but outside of method,block,constructor, same memory was used by all objects
+
+12.Instance variable
+a variable that is specific to an object. declared inside of a class and outside of any method. we can access that by using object 
+
+13.Default values assigned to variables and instances in java
+byte 0
+short 0
+int 0
+long 0
+float 0.0
+double 0.0
+char space
+boolean false
+String null
+object null
+Array null
+
+13 final key word
+1. To restrict the data EX 
+before data :- cant be change the value 
+before method :- can't be override methods,
+before class :- can't be inheritetd that class
+
+14 d/f b/w this and super key words 
+this keyword is used to intialize current class data -> point current class instance
+super keyword is used to access the parent class data methods contructor from child class-> points parent class instance.
+
+15.Nececity of garbage colletor in java 
+in java jvm calls the garbage colletor is free up the unused memory. due to this we can focus on devlopment of applicationwithout worrying about  memory management 
+
+16.Drawback of garbage collector 
+Main drawback is it pauses the application's excution it works to clear the the memory which slowdown the performence of application. 
+
+17.What is memory leak
+1.Creating objects unnecessarliy  
+2.Holding the objects longer than necessary time these useless object cannot provide any value to the program causes memory leak.
+
+18.What the scenario that finally block does not execute
+if we write System.exit(0); in try or catch block theny finally block doen't execute.
+
+diff b/w throw and throws
+throw keyword is used to throw the exception explicitly.     it is used to tell that these type of exceptions we need to handle 
+it can throw only one exception at a time .                  throws keyword can be used to declare mulitiple exception classes at time.
+used in method body                                             method header
+we can throw checked and unchecked exceptions              it handles the checked exceptions.
+
+19. String immutable why 
+Strings are immutable bcz once assigned can't be changed. if we perform concatination on string that will be stored in new memory location instead of updating
+same object.
+
+20. differ b/w String StringBuffer StringBuilder
+
+				String 				StringBuffer 	StringBuilder
+Stroed area  Consatnt String pool 	   Heap				Heap
+
+Modifialble   (immutable)			(mutable)	(mutable)
+
+Thread safe		yes					Yes					No
+
+performence		Slow				Slow but faster 	fast
+									than String
+									
+21.Reverse of a String without using string functions									
+
+public class Reverse of String {
+	private static void reverse(String val) {
+		
+		char arry[] = val.toCharArray();
+		String rev = "";
+		for (int i = arry.length - 1; i >= 0; i--) {
+			rev = rev + arry[i];
+		}
+		System.out.println("reverse is " + rev);
+	}
+
+	public static void main(String[] args) {
+		String val = "Chaitanya";
+		reverse(val);
+	}
+}
+
+22.Remove duplicates from an array without using collections 
+
+public class RemoveDuplicate {
+	public static boolean check(int[] arr, int num) {
+		boolean flag = false;
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i] == num) {
+				flag = true;
+				break;
+			}
+		}
+		return flag;
+	}
+
+	public static void main(String[] args) {
+		int[] a = { 10, 10, 10, 10, 10, 100 };
+		int[] output = new int[a.length];
+		int count = 0;
+		int num = 0;
+
+		// Iterate over an array
+		for (int i = 0; i < a.length; i++) {
+			num = a[i];
+			boolean flag = check(output, num);
+			if (flag == false) {
+				output[count] = num;
+				++count;
+			}
+
+		}
+
+		// print the all the elements from an array except zero's (0)
+		for (int i : output) {
+			if (i != 0)
+				System.out.print(i + "  ");
+		}
+
+	}
+}
+
+23.Reverse of number
+public class ReverseNum {
+	public static void main(String[] args) {
+		int rev = 256;
+		reverse(rev);
+	}
+	private static void reverse(int n) {
+		int rem = 0, rev = 0;
+		while (n > 0) {
+			rem = n % 10;
+			rev = rev * 10 + rem;
+			n = n / 10;
+		}
+		System.out.println("reverse is " + rev);
+	}
+}
+
+24.Square root of given number
+
+public class SquareRoot {
+
+	public static void main(String[] args) {
+		int val=49;
+		squareRoot(49);
+	}
+	private static void squareRoot(int val) {
+		
+		int sqr=(int) Math.sqrt(val);
+		System.out.println(sqr);
+	}
+}
+
+25. Find the first non repeated charecter of string	// only use java 8								
+
+
+public class FirstNonRepetedChar {
+
+	public static void main(String[] args) {
+		String str = "bccbhreff";
+		find(str);
+	}
+	private static void find(String str) {
+		char a[] = str.toCharArray();
+		for (int i = 0; i < a.length; i++) {
+			int count = 0;
+			for (int j = 0; j < a.length; j++) {
+				if (i == j)
+					continue;
+				if (a[i] == a[j])
+					count++;
+			}
+			if (count == 0) {
+				System.out.println(a[i]);
+				System.exit(0);
+			}
+		}
+	}
+}
+
+26. Remove spaces in String 
+
+public class RemoveSpace {
+
+	public static void main(String[] args) {
+		String str = "Deva ki Chaitu";
+		removeSpace(str);
+	}
+	private static void removeSpace(String str) {
+		String[] arry = str.split(" ");
+		String output = "";
+		for (int i = 0; i <= arry.length - 1; i++)
+			output = output + arry[i];
+
+		System.out.print(output);
+	}
+}
+				OR(easy)
+				
+public class RemoveSpace {
+
+	 public static void main(String[] args) {
+	        String input = "This is a string with spaces";
+	        
+	        // Remove all white spaces
+	        String result = input.replaceAll(" ", "");
+	        
+	        System.out.println("Original String: " + input);
+	        System.out.println("String with spaces removed: " + result);
+	    }
+
+}
+
+27.Find the no of occurences of given charecter in string// java 8
+
+public class FindCount {
+
+	public static void main(String[] args) {
+		String str = "abcabcaa";
+		findCount(str, 'a');
+	}
+	private static void findCount(String str, char chr) {
+		char a[] = str.toCharArray();
+		int count = 0;
+		for (char x : a) {
+			if (chr == x)
+				count++;
+		}
+		System.out.println("The charecter "+chr+" present "+count+" no.of times in given string");
+	}
+}
+
+28.Check given strings are anagram or not
+import java.util.ArrayList;
+
+public class Anagram {
+
+	public static void main(String[] args) {
+		String str1 = "abcd", str2 = "dbcae";
+		anagram(str1, str2);
+	}
+	private static void anagram(String str1, String str2) {
+		char a1[] = str1.toCharArray();
+		char a2[] = str2.toCharArray();
+		ArrayList<Character> charlist2 = new ArrayList();
+		int count = 0;
+		if (str1.length() != str2.length()) {
+			System.out.println("given strings are not anagram");
+			System.exit(0);
+		}
+		for (char x : a2) {
+			charlist2.add(x);
+		}
+		for (char x : a1) {
+			if (charlist2.contains(x))
+				count++;
+		}
+		if (count == str1.length())
+			System.out.println("anagram");
+		else
+			System.out.println("not an anagram");
+	}
+}
+
+29. Second max element of array
+
+public class MaxElement {
+
+	public static void main(String[] args) {
+		int a[] = { 1, 2, 5, 3, 4, 6 };
+		max(a);
+	}
+
+	private static void max(int[] a) {
+		int max;
+		int temp;
+		for (int i = 0; i <= a.length - 1; i++) {
+			for (int j = i + 1; j <= a.length - 1; j++) {
+				if (a[i] > a[j]) {
+					temp = a[i];
+					a[i] = a[j];
+					a[j] = temp;
+				}
+			}
+		}
+		for (int x : a)
+			System.out.println(x);
+		System.out.println("seconed max element is " + a[a.length - 2]);
+	}
+}
+30. Pair of array is equal to given number// java 8 
+
+public class PairIsSum {
+
+	public static void main(String[] args) {
+		int sum = 6;
+		int a[] = { 1, 4, 2, 3, 5, 6, 7, 8 };
+		find(sum, a);
+
+	}
+	private static void find(int sum, int[] a) {
+		for (int i = 0; i <= a.length - 1; i++) {
+			for (int j = i + 1; j <= a.length - 1; j++) {
+				if (a[i] + a[j] == sum)
+					System.out.println("("+a[i] + "," + a[j]+")");
+			}
+		}
+	}
+}
+31.Is given number square of 2
+
+public class PowerOfTwo {
+	static String isPowerOfTwo(int n)
+    {
+       while(n!=1) {
+    	 if(n%2==1) 
+    		return "no";
+    	 n=n/2;
+       }
+       return "yes";
+    }
+ 
+    public static void main(String args[])
+    {
+    	System.out.println(isPowerOfTwo(12));
+    }
+}
+
+32. Check given num is Armstrong or not (sum of cubes of num is given num)
+
+public class Armstrong {
+
+	public static void main(String[] args) {
+		palindrom(371);
+	}
+
+	private static void palindrom(int n) {
+		int sum = 0, rem = 0, num = n;
+
+		while (n > 0) {
+			rem = n % 10;
+			sum = (int) (sum + Math.pow(rem, 3));
+			n = n / 10;
+		}
+		if (num == sum)
+			System.out.println("Given num is Armstrong");
+		else
+			System.out.println("not Armstrong");
+	}
+
+}
+33. print all prime numbers up to given number 
+
+public class PrimeNumbers {
+	public static void main(String[] args) {
+		checkPrime(37);
+
+	}
+	
+	private static void checkPrime(int n) {
+		for (int j = 2; j <= n; j++) {
+			int count = 0;
+			for (int i = 2; i <= n; i++) {
+				if (j % i == 0)
+					count++;
+			}
+			if (count == 1)
+				System.out.println(j);
+		}
+	}
+}
+
+34.Fibanocci series with iteration
+
+public class FibonacciSeries {
+
+	public static void main(String[] args) {
+		fibSeries(25);
+	}
+
+	private static void fibSeries(int n) {
+		int a=0,b=1,sum=0;
+		for(int i=0;sum<=n;i++) {
+			System.out.println(sum);
+			a=b;
+			b=sum;
+			sum=a+b;
+		}
+	}
+}
+
+35.Find the nth number in fibanacci series.
+
+public class FibonacciSeries {
+
+	public static void main(String[] args) {
+		fibSeries(5);
+	}
+
+	private static void fibSeries(int n) {
+		int a=0,b=1,sum=0;
+		for(int i=1;i<=n-1;i++) {
+			a=b;
+			b=sum;
+			sum=a+b;
+		}
+		System.out.println(n+" th number is "+sum);
+	}
+}
+36.Check given num is binary or not (conatins only 1 's and 0's otherwise not binary)
+
+public class IsBinary {
+
+	public static void main(String[] args) {
+		isBinary(1101);
+
+	}
+
+	private static void isBinary(int n) {
+		int digit = 0;
+		while (n > 0) {
+			digit = n % 10;
+			if (!(digit == 1 || digit == 0)) {
+				System.out.println("not a binary number");
+				System.exit(0);
+			}
+			n = n / 10;
+		}
+		if (n <= 0)
+			System.out.println("binary number");
+	}
+
+}
+37.Swap two numbers without using third variable
+
+public class Swap {
+
+	public static void main(String[] args) {
+		swap(6, 9);
+	}
+
+	private static void swap(int a, int b) {
+		a = a + b;
+		b = a - b;
+		a = a - b;
+		System.out.println(a + "," + b);
+	}
+
+}
+38. Find largest of 3 nums
+
+public class LargestNum {
+
+	public static void main(String[] args) {
+		findLargest(10, 20, 40);
+	}
+
+	private static void findLargest(int n1, int n2, int n3) {
+		int largest;
+		if (n1 > n2 && n1 > n3)
+			System.out.println("largest is " + n1);
+		else if (n2 > n1 && n2 > n3)
+			System.out.println("largest is " + n2);
+		else
+			System.out.println("largest is " + n3);
+	}
+
+}
+printing emp details by using Java8 streams and lambda expressions
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Employee {
+	String name = "";
+	float salary;
+	int id;
+
+	public Employee(String name, float sal, int id) {
+		this.name = name;
+		this.salary = sal;
+		this.id = id;
+	}
+
+	public static void main(String[] args) {
+
+		Employee e1 = new Employee("devaki", 25000, 1);
+		Employee e2 = new Employee("satya", 25000, 2);
+		Employee e3 = new Employee("chaitu", 25000, 3);
+
+		List<Employee> list = new ArrayList<Employee>();
+		list.add(e1);
+		list.add(e2);
+		list.add(e3);
+		
+		for(Employee e:list) {
+			System.out.println("name "+e.name+" sal "+e.salary+" id "+e.id);
+		}
+
+		list.stream().forEach((e)->System.out.println("name: "+e.name+" sal: "+e.salary+" id: "+e.id));
+			
+	}
+
+}
+39.Find the prime factors of given number
+
+40.Java is paltform independent
+bcz java compiler converts the source code to byte code we can execute this byte code in any plathform (this is possible by jvm)
+
+41. Why java not purly object oriented 
+Bcz it supports the primitive data types like byte,short,int,long,double,boolean,char for object oriented program it stores the in the form of objects 
+
+42.d/f b/w stack and heap memory
+stack memory local variables, methods are stored. it is a temporary memory. the memory assigned for that variable is deallocated.
+heap memory objects and instance variables are stored
+stack generally smmaler size than heap used to store small temporary variables , heap is used for storng larger objects.
+
+ex: variables,methods 
+
+43.Why pointers are not used in java
+java follows code simplicity but pointers very complex and it not safe to use the pointers.bcz we can easily access the memory address by pointers 
+
+44.what is is-a and has-a relationship in java
+IS-A relation one class inherit another class that is IS-A relation
+
+45.What is functional interface in java 8
+Functional interface contains only one abstarct method but can have any number of static and default methods. we use lambda expression to implement this methods.
+
+46.When to choose HashSet and when LinkedhashSet
+if we choose LinkedHashSet to maintain the insertion order
+if choose HashSet we dont maintain insertion order use TreeSet if we want to sort the elements
+
+47.LinkedList advantage over Arraylist or when to choose LinkedList and when to choose ArrayList
+if we want continous insertion or deletion of data we prefer LinkedList
+if we want reading the data ratherthan insertion and deletion prefer ArrayList
+
+48.difference between List and Set
+List														Set
+Allow duplicate values 									Doesn't allow duplicate values
+maintains the insertion order 							doesn't maintain insertion order
+allow multiple null values								Allow only one null value
+we can access the data based on index					we cant access data based on index
+Can be implemented by LinkedList,ArrayList				Can be accessed by HashSet and LinkedHashSet
+If we want continous retrival of data we can prefer		If we want store distinct elements we can prefer
+Listiterator() to iterate the List								Iterator() to iterat the set
+
+49. diff b/w .equals() and == ope
+String s1="apple"
+String s2="apple"
+s1.equals(s2) // true
+s1==s2 //false bex not sored in same address
+== method comapres address too
+
+50.How to convert byte array  into String
+
+byte a[]= {97,98,99,100};
+
+	String result = new String(a, StandardCharsets.UTF_8);
+System.out.println(result);
+
+51.Heap and stack memory, cache,constant pool area ,Metaspace(method area)
+java objects are stored in heap memory, when we craeted object with new ope memory will be allocated to that object when garbage collector call it will be deallocated 
+local variables and method parameters are stored in stack memory
+If we want to access a data repeteadly we can store that ddata in cache memory.
+constant pool area used to store the constant values
+method area stores the class meta data (fields,classname,super class name, interfaces implemented by class,constants,methods)
+
+52.DIFFEERNCE BETWEEN JVM , JRE & JDK
+jdk is a software package used to develope java applications 
+it onclude jre , compiler,debugger,libries and development tools.
+developer used jdk to write compile and package the java code
+jre  is a runtime environment it includes jvm
+if user want to run his java application he must need jre.
+it doesnt contain compiler,debigger,development tools.
+jvm is also runtime environment.
+it compile java byte code to native mechine code,providing the platform independence manges the execution environment.
+it responsbile for memory management,garbage collecton,runtime loading of clases
+
+53.DIFFERENCE BETWEEN HEAP MEMORY AND STACK MEMORY
+
+heap : dynamically allocated objects with longer life time,
+stack : local variables shorter life time
+
+53. LOCAL VARIABLE, INSTANCE VARIABLE AND STATIC VARIABLE
+local: inside method,block,constructor,
+instance: outside of method,block, constructor, access by using objetc reference
+static : static keyword have access throught class name declare out side block , all instance share one copy of  memory
+
+54. what are opps concepts
+1.abstaction
+2.encapsulaton
+3.inheritence
+4.polymorphism
+5.class,object
+
+54.what is relation between  hashcode and equals() method
+if two objects are equal based on equals() method hash code must be same for those objects
+if two objects have same hashcode equals() method can return false.
+
+55 Advantages of lambda function over normal methods
+1.it allows u to write the concise code (more redable,understandable,avoid boilerplate code)
+2.It encourage the use of functional programming
+3.Lambda function increases readability of program
+4.It encourages the code reusability
+
+56 what is stream api and use 
+stream api is used to process the collection of objects it perform the different type of operations like filtering,mapping,sorting,
+
+57.diff bw arraylist and vector
+vector syncronized(thread safe) AL non syncronized(not thread safe)
+
+58.df b/w sleep and wait methods
+wait() :- for inter thread communication.allowing a thread to release the lock and wait for notification from another thread 
+sleep() :- it pauses the execution of thread without releasing lock
+
+59.create a thread
+1. by extending thread class 
+2. by implementing runnable interface  
+
+60.DIFFERENCE BETWEEN HASHMAP AND LINKED HASHMAP
+1.Order
+LinkedHashMap mantain the order,HashMap does not maintain
+2.performence
+HASHMAP performence fast bcz it doesn't maintain any order
+LinkedHashMap performence is low bcz it maintaining the order
+3.memory consumption
+hashMap consume less memory 
+LinkedHashMap reqire additional memory to store linked list
+
+61.why stringbuffer is faster than string
+The reason is that String is immutable; its value does not change. When adding a string, we create a new string in memory.
+StringBuilder is mutable, so when we use the append, its value changes, not a new string is created.
+
+62 Swap the 0,4 indexes of String with (java 8 syntax)
+63.Reverse only number in alphanumeric string ex:- input ="a1b2c3d4"  output="a4b3c2d1" (java 8 syntax)
+64. creating thread,thread lifecycle
+65..equals() method with objects
+66.df bw LL and HS
+67.methods of string class
+68.df bw throws and throw 
+69.Parent class of Collections Interface (Iterable)
+70collectons diagram
+71stream api methods
+min() :- find min value
+max():- to find max value
+map():- to map each value
+filter() :- to retrive set desired values
+sorted() :- to sort elements low to high (asce)
+sum() :- to get sum of all elements 
+average():- to get average value of all elements
+anyMatch() :- returns true if any value satisfy that condition
+allMatch() :- returns true if all values satisfy that condition 
+nonMatch() :- returns true if no one element is matched with condition.
+isParalle() :-
+reduce() :-
+asDoubleStream() :- convert to double values
+asLongStream() :- convert to long values
+distinct() :- remove duplicate.
+limit(2) :- up to that no.of elemnts it will store.
+flatMap() :- process elements at deeper level
+skip(index) :- skip that particular element
+peek() :- use that value after the operation
+toArray() :- convert stream to array
+
+when .equals() is used to compare string it just compare only address
+if we compare objects it will compare memory location and content
+same == operator also compare memory location and data
+
+how hashset internally doesnot allow duplicates
+check for the hashcode if its differ add ,if it same check equals() method return true or fasle.
+
+what is dao design pattern in j2ee(data access object)
+we are seperating persistence logic we are maintaing seperate layer for performing db operations so that this layer is independent and do not depend on ther 
+that means we are following loose coupling here. 
+
+what is MVC design pattern
+we are buildingour application with MVC design pattren means we have MOdel,controller,view layers in our application.
+in model view we have to write all business logics it inter connected with controller layer and db operations also performing here.
+controller layer acces the input from browser and send to model layer get the response from from model and send to view 
+the output or response  can able see by user is called view.
+
+what is factory design pattern
+The factory design pattern is used when we have a superclass with multiple sub-classes and based on input, we need to return one of the sub-class
+
+Difference between arrays and collections
+1.Arrays Fixed size  						Collections growable size
+2.Homegeneous      								Hetrogeneous
+3.can't provide ready made methods for sorting,searching    readymade methods for searching and sorting. 
+
+What is Map
+map is an interface. implemented by HASHMAP,LinkedHashMap,WeakHashmap,TreeMap
+It stores the elements in the form key and value pairs. keys can not be duplicated values may duplicates
+
+what classloader and types
+Loaders are responsible for loading the java classe to javm at runtime.
+Application,extention,bootstrap 
+
+stream vs parallel streams
+ executed by different threads, running on multiple CPU cores in a computer. 
+
+has-a(composition,aggregation) and is-a(inheritence)difference
+has-a runtime binding is-a(inheritence) compile time binding
+
+composition
+Two objects associated with each other there is a strong relationship between two classes. the other class can not exist without owner or parent. ex:-car,engine
+aggreation
+a specialized form of association between two or more objects in which each object has its own life cycle but there exists an ownership as well
+ex:-adddress,employee
+
+lock vs syncronized
+ you can release and acquire the locks in any order. with synchronized, you can release the locks only in the order it was acquired.
+
+HashSet Vs TreeSet
+HashSet maintains no order whereas TreeSet maintains ascending order.
+HashSet impended by hash table whereas TreeSet implemented by a Tree structure.
+HashSet performs faster than TreeSet.
+HashSet is backed by HashMap whereas TreeSet is backed by TreeMap.
+
+Java 8 collection api improvements
+sort the map by directly using comparator
+iterate map use forEach method
+
+
+(QBE Queensland Insurance  Bankers' and Traders' Equitable Probate and General Insurance Company)
+
+In Set we cant retrive elements based on index.
+no
+
+try-with-resource 
+we want automatically  close the connections 
+ex
+Both catch and finally are optional, but you must use one of them
+
+
+
+
+
+
+
+
+1. junit error
+2.relation bean lifecycle and postcontruct() predestroy()
+
+
+
+
+infosysy pwd 
+Welcome@201918
+
+
+
+
+
+
+
